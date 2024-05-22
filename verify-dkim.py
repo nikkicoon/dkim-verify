@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
 from typing import Dict
 import re
 import sys
 from base64 import b64encode, b64decode
 import email
 import email.message
-from Crypto.Cipher import PKCS1_v1_5
+from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 from Crypto.Util.asn1 import DerSequence, DerNull, DerOctetString, DerObjectId
