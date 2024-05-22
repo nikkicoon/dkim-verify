@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-from typing import Dict, Optional
+from typing import Dict
 import re
 import sys
 from base64 import b64encode, b64decode
 import email
 import email.message
-from Crypto.Signature import PKCS1_v1_5
+from Crypto.Cipher import PKCS1_v1_5
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 from Crypto.Util.asn1 import DerSequence, DerNull, DerOctetString, DerObjectId
@@ -26,7 +26,7 @@ def hash_body(body: str) -> str:
 
 
 def get_public_key(domain: str, selector: str) -> RSA.RsaKey:
-    dns_response = dns.resolver.query("{}._domainkey.{}.".format(selector, domain), "TXT").response.answer[0].to_text()
+    dns_response = dns.resolver.resolve("{}._domainkey.{}.".format(selector, domain), "TXT").response.answer[0].to_text()
     p = re.search(r'p=([\w\d/+]*)', dns_response).group(1)
     pub_key = RSA.importKey(b64decode(p))
     assert pub_key.e == 65537

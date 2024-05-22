@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "dkim-verify"
+version = "0.0.1"
+description = ""
+authors = []
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+dnspython = "*"
+mypy = "*"
+mypy-extensions = "*"
+pycryptodome = "*"
+typing = "*"
+typing-extensions = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 120
